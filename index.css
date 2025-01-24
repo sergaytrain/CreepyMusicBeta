@@ -1,0 +1,85 @@
+* {
+    background-color: white;
+    color: black;
+}
+.player {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    
+    position: absolute;    /* Абсолютное позиционирование */
+    top: 50%;              /* Центрируем по вертикали */
+    left: 50%;             /* Центрируем по горизонтали */
+    transform: translate(-50%, -50%); /* Смещаем на 50% от ширины и высоты, чтобы центрировать */
+  }
+.reltext {
+    margin-left: 25px;
+    font-family: "Montserrat", serif;
+    color: yellow;
+}
+.card img{
+    border-radius: 5px;
+    width: 300px;
+    height: 300px;
+    color: white;
+}
+.logo a{
+    text-decoration: none;
+    font-family: 'Druk Text Wide Trial', sans-serif;   
+    transition: font-size, color 1000ms ease-in-out;   
+    color: white;                                          
+}
+.logo {
+    transition: font-size, color 1000ms ease-in-out;  
+    color: white;
+    text-align: center;
+}
+.card {
+    font-family: "Montserrat", serif;
+    color: white;
+    text-align: center;
+}
+.relises {
+    display: flex; /* Используем Flexbox */
+    justify-content: space-between; /* Распределяем карточки с равными отступами */
+    flex-wrap: wrap; /* Позволяем перенос карточек на новую строку при необходимости */
+}
+
+.logo a:hover{
+    color: red;
+}
+.player {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  #progress-bar {
+    width: 100%;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  img {
+    width: 40px;
+    height: 40px;
+  }
+  .textone{
+    text-align: center;
+    font-family: "Montserrat", serif;
+  }
+  .podval {
+    text-align: center;
+    font-family: "Montserrat", serif;
+    margin-top: 700px;
+  }

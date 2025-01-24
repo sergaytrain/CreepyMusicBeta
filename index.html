@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreepyMusic</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.cdnfonts.com/css/druk-text-wide-trial?styles=157496" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="logo"><a href="index.html"><h1>CreepyMusic.app</h1></a></div>
+    <div class="textone">
+        <h1>Все только актуальное!</h1>
+    </div>
+    <div class="player">
+        <h1 id="song-name">Название песни</h1>
+        <h3 id="author">Автор</h3>
+    
+        <div class="progress">
+          <input type="range" id="progress-bar" value="0" step="1" min="0" max="100" disabled>
+          <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+        </div>
+    
+        <button id="play-button">
+          <img src="https://cdn-icons-png.flaticon.com/512/4028/4028535.png" alt="Play" id="play-icon">
+        </button>
+      </div>
+      <div class="podval">
+        <p>Разработка: sergaytrain. Помощь: ChatGpt</p>
+        <p>Внимание! Музыка была взята с <a href="https://music.yandex.ru">Яндекс.Музыки</a></p>
+      </div>
+    
+      <audio id="audio" preload="auto">
+        <!-- Вставь ссылки на свои аудиофайлы сюда -->
+        <source src="track1.mp3" type="audio/mp3">
+        <source src="track2.mp3" type="audio/mp3">
+        <source src="track3.mp3" type="audio/mp3">
+      </audio>
+    
+      <script src="script.js"></script>
+</body>
+</html>
