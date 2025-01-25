@@ -4,11 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CreepyMusic</title>
-    <link rel="stylesheet" href="index.css">
     <link href="https://fonts.cdnfonts.com/css/druk-text-wide-trial?styles=157496" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            background-color: white;
+            color: black;
+        }
+        .player {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            position: absolute;    /* Абсолютное позиционирование */
+            top: 50%;              /* Центрируем по вертикали */
+            left: 50%;             /* Центрируем по горизонтали */
+            transform: translate(-50%, -50%); /* Смещаем на 50% от ширины и высоты, чтобы центрировать */
+        }
+        .reltext {
+            margin-left: 25px;
+            font-family: "Montserrat", serif;
+            color: yellow;
+        }
+        .card img {
+            border-radius: 5px;
+            width: 300px;
+            height: 300px;
+            color: white;
+        }
+        .logo a {
+            text-decoration: none;
+            font-family: 'Druk Text Wide Trial', sans-serif;
+            transition: font-size, color 1000ms ease-in-out;
+            color: white;
+        }
+        .logo {
+            transition: font-size, color 1000ms ease-in-out;
+            color: white;
+            text-align: center;
+        }
+        .card {
+            font-family: "Montserrat", serif;
+            color: white;
+            text-align: center;
+        }
+        .relises {
+            display: flex; /* Используем Flexbox */
+            justify-content: space-between; /* Распределяем карточки с равными отступами */
+            flex-wrap: wrap; /* Позволяем перенос карточек на новую строку при необходимости */
+        }
+        .logo a:hover {
+            color: red;
+        }
+        .player {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        #progress-bar {
+            width: 100%;
+        }
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        img {
+            width: 40px;
+            height: 40px;
+        }
+        .textone {
+            text-align: center;
+            font-family: "Montserrat", serif;
+        }
+        .podval {
+            text-align: center;
+            font-family: "Montserrat", serif;
+            margin-top: 700px;
+        }
+    </style>
 </head>
 <body>
     <div class="logo"><a href="index.html"><h1>CreepyMusic.app</h1></a></div>
@@ -20,26 +101,117 @@
         <h3 id="author">Автор</h3>
     
         <div class="progress">
-          <input type="range" id="progress-bar" value="0" step="1" min="0" max="100">
+          <input type="range" id="progress-bar" value="0" step="1" min="0" max="100" >
           <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+        </div>
+
+        <!-- Элемент для регулировки громкости -->
+        <div>
+            <label for="volume-bar">Громкость</label>
+            <input type="range" id="volume-bar" min="0" max="100" value="100">
         </div>
     
         <button id="play-button">
           <img src="https://cdn-icons-png.flaticon.com/512/4028/4028535.png" alt="Play" id="play-icon">
         </button>
-      </div>
-      <div class="podval">
+    </div>
+    <div class="podval">
         <p>Разработка: sergaytrain. Помощь: ChatGpt</p>
         <p>Внимание! Музыка была взята с <a href="https://music.yandex.ru">Яндекс.Музыки</a></p>
-      </div>
-    
-      <audio id="audio" preload="auto">
+        <p>Так же вы можете переключиться на <a href="design.html">"новый дизайн" нажав сюда.</a></p>
+    </div>
+  
+    <audio id="audio" preload="auto">
         <!-- Вставь ссылки на свои аудиофайлы сюда -->
         <source src="track1.mp3" type="audio/mp3">
         <source src="track2.mp3" type="audio/mp3">
         <source src="track3.mp3" type="audio/mp3">
-      </audio>
-    
-      <script src="script.js"></script>
+    </audio>
+  
+    <script>
+        const tracks = [
+            { title: "Korean or Get Eaten", author: "Duolingo, squid game", file: "music/Korean or Get Eaten - Duolingo.mp3" },
+            { title: "life force", author: "ptasinski", file: "music/ptasinski - life force.mp3" },
+            { title: "Проснулся холод", author: "nedum4y0u", file: "music/nedum4y0u - Проснулся холод.mp3" },
+            { title: "Пальмира", author: "Луна", file: "music/Луна - Пальмира.mp3" },
+            { title: "Solo Tu", author: "Highland", file: "music/Highland - Solo Tu.mp3" },
+            { title: "Золотые кресты", author: "Nocturnex", file: "music/Nocturnex - Золотые кресты.mp3" },
+            { title: "Montagem Castigo Eterna", author: "DJ TSF", file: "music/DJ TSF - Montagem Castigo Eterna.mp3" },
+            { title: "Обломки чувств", author: "TERESHINA", file: "music/TERESHINA - Обломки чувств.mp3" },
+            { title: "zitraks mode", author: "shadowraze", file: "music/shadowraze - zitraks mode.mp3" },
+            { title: "Код Гиасс", author: "dabbackwood", file: "music/dabbackwood - Код Гиасс.mp3" },
+            { title: "Tobias Dray", author: "HMUя", file: "music/Tobias Dray - HMU.mp3" },
+            { title: "LIGHTS GO OUT", author: "DXCD77", file: "music/DXCD77 - LIGHTS GO OUT.mp3" },
+            { title: "World Hold On", author: "Bob Sinclar", file: "music/Bob Sinclar - World Hold On.mp3" },
+            { title: "TryToFriend", author: "FORTUNA 812", file: "music/FORTUNA 812 - TryToFriend.mp3" },
+            { title: "akiaura", author: "pussypodium", file: "music/akiaura - pussypodium.mp3" },
+            { title: "Lumi Athena", author: "paranoia", file: "music/Lumi Athena - paranoia.mp3" },
+            { title: "TOKYOPHILE", author: "Montagem Lunar Celestia 1.0 (SLOWED)", file: "music/TOKYOPHILE - Montagem Lunar Celestia 1.0 (SLOWED).mp3" },
+        ];
+
+        const audio = document.getElementById('audio');
+        const progressBar = document.getElementById('progress-bar');
+        const playButton = document.getElementById('play-button');
+        const playIcon = document.getElementById('play-icon');
+        const songName = document.getElementById('song-name');
+        const author = document.getElementById('author');
+        const currentTimeLabel = document.getElementById('current-time');
+        const durationLabel = document.getElementById('duration');
+        const volumeBar = document.getElementById('volume-bar');
+  
+        let isPlaying = false;
+  
+        function loadRandomTrack() {
+            const randomTrack = tracks[Math.floor(Math.random() * tracks.length)];
+            songName.textContent = randomTrack.title;
+            author.textContent = randomTrack.author;
+            audio.src = randomTrack.file;
+            audio.load();
+        }
+  
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        }
+  
+        audio.addEventListener('loadeddata', () => {
+            durationLabel.textContent = formatTime(audio.duration);
+        });
+  
+        audio.addEventListener('timeupdate', () => {
+            const currentTime = audio.currentTime;
+            progressBar.value = (currentTime / audio.duration) * 100;
+            currentTimeLabel.textContent = formatTime(currentTime);
+        });
+  
+        playButton.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.src = 'https://cdn-icons-png.flaticon.com/512/4028/4028535.png';
+            } else {
+                audio.play();
+                playIcon.src = 'https://cdn4.iconfinder.com/data/icons/circles-1/32/548-01-512.png';
+            }
+            isPlaying = !isPlaying;
+        });
+  
+        progressBar.addEventListener('input', (e) => {
+            const seekTo = (e.target.value / 100) * audio.duration;
+            audio.currentTime = seekTo;
+        });
+  
+        volumeBar.addEventListener('input', (e) => {
+            audio.volume = e.target.value / 100;
+        });
+  
+        // Добавляем слушатель события 'ended', чтобы воспроизводить следующий случайный трек
+        audio.addEventListener('ended', () => {
+            loadRandomTrack();
+            audio.play();
+        });
+  
+        loadRandomTrack();
+    </script>
 </body>
 </html>
